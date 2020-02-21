@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{{ url_for('static',filename='front/favicon.ico') }}">
+    <link href="{{ url_for('static',filename='front/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='front/css/github-markdown.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='front/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='front/css/styles/solarized-light.css') }}" rel="stylesheet">
+    {% block headers %}{% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+</body>
+</html>
