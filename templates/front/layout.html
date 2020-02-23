@@ -1,17 +1,58 @@
 <!DOCTYPE HTML>
 <html lang="zh-CN">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="icon" href="{{ url_for('static',filename='front/favicon.ico') }}">
-    <link href="{{ url_for('static',filename='front/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static',filename='front/css/github-markdown.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static',filename='front/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static',filename='front/css/styles/solarized-light.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{url_for('static',filename='front/favicon.ico')}}">
+    <link href="{{url_for('static',filename='front/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='front/css/github-markdown.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='front/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='front/css/styles/solarized-light.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='front/css/bootstrap-navbar-blue-gold.css')}}" rel="stylesheet">
     {% block headers %}{% endblock %}
 </head>
-<body>
+
+<body style="margin-top:65px;min-height:calc(100vh - 65px);">
+    <nav class="navbar navbar-expand-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{url_for('static',filename='front/favicon.png')}}" alt="{{options.title}}"
+                    class="rounded-circle" style="height:40px;">
+                {{options.title}}
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                {% for nav in options.nav_list %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{nav.url}}" title="{{nav.label}}">
+                            <i class="fa fa-{{nav.option}}" title="{{nav.label}}">
+                                <div class="d-block d-sm-none d-md-block" style="float:right;margin-left:5px;">
+                                    {{nav.name}}
+                                </div>
+                            </i>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% if options.github_url %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{options.github_url}}">
+                            <i class="fa fa-github" title="GitHub">
+                                <div class="d-block d-sm-none d-md-block" style="float:right;margin-left:5px;">Github
+                                </div>
+                            </i>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
     {% block body %}{% endblock %}
 </body>
+{% block pagefoot %}{% endblock %}
 </html>
